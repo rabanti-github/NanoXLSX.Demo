@@ -9,6 +9,10 @@ namespace NanoXLSX.Demo
     public class Program
     {
 
+        /// <summary>
+        /// Runs all demos in the UseCases folder
+        /// </summary>
+        /// <param name="args">Ignored</param>
         static void Main(string[] args)
         {
             UseCases.BasicDemo.Run();
