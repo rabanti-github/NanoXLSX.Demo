@@ -1,0 +1,19 @@
+# Build artifacts
+bin/
+obj/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache/options
+.vs/
+
+# Generated Excel files (demos output)
+*.xlsx
+
+# NuGet Packages
+*.nupkg
+packages/
