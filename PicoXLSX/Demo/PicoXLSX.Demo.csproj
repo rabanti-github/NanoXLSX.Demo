@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net8.0;net45</TargetFrameworks>
+    <LangVersion>9.0</LangVersion>
+    <AssemblyName>PicoXLSX.Demo</AssemblyName>
+    <RootNamespace>PicoXLSX.Demo</RootNamespace>
+    <Version>4.0.0</Version>
+    <Authors>Raphael Stoeckli</Authors>
+    <Company>Raphael Stoeckli</Company>
+    <Product>PicoXLSX</Product>
+    <Description>Demo application showing the use of PicoXLSX, a lightweight library to generate Microsoft Excel files (XLSX) in an easy and native way</Description>
+    <Copyright>Copyright Raphael Stoeckli © 2026</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/rabanti-github/PicoXLSX</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/rabanti-github/NanoXLSX.Demo.git</RepositoryUrl>
+    <PackageTags>XLSX Excel ExcelWriter Office</PackageTags>
+    <PackageReleaseNotes>See change log in main project: https://github.com/rabanti-github/PicoXLSX</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PicoXLSX" Version="4.0.0-rc.9" />
+  </ItemGroup>
+
+</Project>

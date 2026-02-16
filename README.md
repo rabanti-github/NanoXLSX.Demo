@@ -2,15 +2,15 @@
 
 # NanoXLSX Demo
 
-Comprehensive demo applications showcasing **NanoXLSX v3.x** functionality with practical, ready-to-run examples.
+Comprehensive demo applications showcasing **NanoXLSX v3.x** and **PicoXLSX v4.x** functionality with practical, ready-to-run examples.
 
 ## 📋 Overview
 
-This repository contains **27 executable use cases** demonstrating the core features of NanoXLSX, a .NET library for creating and reading Microsoft Excel (XLSX) files. Each use case is a standalone example that generates or reads Excel files, making it easy to learn and understand the library's capabilities.
+This repository contains executable use cases demonstrating the core features of NanoXLSX and PicoXLSX, .NET libraries for creating (and reading) Microsoft Excel (XLSX) files. Each use case is a standalone example that generates or reads Excel files, making it easy to learn and understand the libraries' capabilities.
 
 **Current Implementation:**
 - ✅ **NanoXLSX** (.NET 8.0) - Fully implemented with 27 use cases
-- ⏳ **PicoXLSX** (.NET 8.0) - Planned
+- ✅ **PicoXLSX** (.NET 8.0) - Fully implemented with 25 use cases (writer-only)
 - ⏳ **NanoXLSX4j** (Java >11) - Planned
 
 ## 🚀 Getting Started
@@ -20,7 +20,7 @@ This repository contains **27 executable use cases** demonstrating the core feat
 - .NET Framework 4.5 or higher (for .NET Framework 4.5 target)
 - Any IDE supporting .NET (Visual Studio, VS Code, Rider)
 
-### Running the Demos
+### Running the NanoXLSX Demos
 
 **Interactive Mode** (shows menu of all use cases):
 ```bash
@@ -43,6 +43,16 @@ dotnet run all
 ```bash
 dotnet run "BasicDemo,Read,StyleBasics"    # By name
 dotnet run "1,2,11"                        # By number
+```
+
+### Running the PicoXLSX Demos
+
+```bash
+cd PicoXLSX/Demo
+dotnet run                                      # Interactive mode
+dotnet run all                                   # Run all use cases
+dotnet run "BasicDemo,StyleBasics,Formulas"      # By name
+dotnet run "1,2,10"                              # By number
 ```
 
 ## 📚 Available Use Cases
@@ -121,7 +131,12 @@ Demo/
 │   │   ├── UseCases/           # 27 individual use case files
 │   │   └── NanoXLSX.Demo.csproj  # Project file
 │   └── Demo.sln                # Visual Studio solution
-├── PicoXLSX/                   # (Planned)
+├── PicoXLSX/
+│   ├── Demo/                   # Multi-targeting project (net8.0 + net45)
+│   │   ├── Program.cs          # Interactive demo runner
+│   │   ├── UseCases/           # 25 individual use case files (writer-only)
+│   │   └── PicoXLSX.Demo.csproj  # Project file
+│   └── Demo.sln                # Visual Studio solution
 ├── NanoXLSX4j/                 # (Planned)
 └── global.json                 # .NET SDK version configuration
 ```
@@ -138,6 +153,8 @@ Demo/
 - **Main Repository**: [github.com/rabanti-github/PicoXLSX](https://github.com/rabanti-github/PicoXLSX)
 - **API Documentation**: [rabanti-github.github.io/PicoXLSX](https://rabanti-github.github.io/PicoXLSX/)
 - **NuGet Package**: [nuget.org/packages/PicoXLSX](https://www.nuget.org/packages/PicoXLSX)
+- **Current Demo Version**: PicoXLSX v4.0.0-rc.9
+- **Migration Guide**: [PicoXLSX v3.x to v4.0.0](https://github.com/rabanti-github/PicoXLSX/blob/master/MigrationGuide.md)
 
 ### NanoXLSX4j (Java)
 - **Main Repository**: [github.com/rabanti-github/NanoXLSX4j](https://github.com/rabanti-github/NanoXLSX4j)
@@ -180,22 +197,35 @@ foreach (var cell in workbook.CurrentWorksheet.Cells)
 
 ## 🎯 Multi-Targeting Support
 
-The demo project targets both:
+The demo projects target both:
 
 - **.NET Framework 4.5** - For legacy Windows applications
 - **.NET 8.0** - For modern cross-platform applications
 
-This allows you to see how NanoXLSX works across different .NET implementations using a single codebase.
+This allows you to see how NanoXLSX and PicoXLSX work across different .NET implementations using a single codebase.
 
-## 🔄 Migration from v2.x to v3.0.0
+## 🔄 Migration Guides
 
-All demos in this repository have been migrated to NanoXLSX v3.0.0. Key changes include:
+### NanoXLSX v2.x to v3.0.0
+
+All NanoXLSX demos have been migrated to v3.0.0. Key changes include:
 
 - `Workbook.Load()` → `WorkbookReader.Load()` (requires `using NanoXLSX.Extensions;`)
 - `SetSelectedCells()` → `ClearSelectedCells()` + `AddSelectedCells()`
 - Enum values now use PascalCase (e.g., `fillColor` → `FillColor`)
 
-For complete migration details, see the [Migration Guide](https://github.com/rabanti-github/NanoXLSX/blob/master/MigrationGuide.md).
+For complete migration details, see the [NanoXLSX Migration Guide](https://github.com/rabanti-github/NanoXLSX/blob/master/MigrationGuide.md).
+
+### PicoXLSX v3.x to v4.0.0
+
+All PicoXLSX demos have been migrated to v4.0.0. Key changes include:
+
+- Namespace changed from `PicoXLSX` to `NanoXLSX`
+- Sub-classes like `Cell.Address`, `Style.Font` are now independent classes (`Address`, `Font`)
+- All constants and enum values renamed to PascalCase
+- PicoXLSX can be extended with NanoXLSX packages (e.g., add `NanoXLSX.Reader` for read support)
+
+For complete migration details, see the [PicoXLSX Migration Guide](https://github.com/rabanti-github/PicoXLSX/blob/master/MigrationGuide.md).
 
 ## 📜 License
 
