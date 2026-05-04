@@ -163,15 +163,16 @@ Demo/
 - **Main Repository**: [github.com/rabanti-github/NanoXLSX](https://github.com/rabanti-github/NanoXLSX)
 - **API Documentation**: [rabanti-github.github.io/NanoXLSX](https://rabanti-github.github.io/NanoXLSX/)
 - **NuGet Package**: [nuget.org/packages/NanoXLSX](https://www.nuget.org/packages/NanoXLSX)
-- **Current Demo Version**: NanoXLSX v3.0.0-rc.9
+- **Current Demo Version**: NanoXLSX v3.1.0
+- **Migration Guide**: [NanoXLSX v2.x to v3.x](https://github.com/rabanti-github/NanoXLSX/blob/master/MigrationGuide.md)
 
 ### PicoXLSX
 
 - **Main Repository**: [github.com/rabanti-github/PicoXLSX](https://github.com/rabanti-github/PicoXLSX)
 - **API Documentation**: [rabanti-github.github.io/PicoXLSX](https://rabanti-github.github.io/PicoXLSX/)
 - **NuGet Package**: [nuget.org/packages/PicoXLSX](https://www.nuget.org/packages/PicoXLSX)
-- **Current Demo Version**: PicoXLSX v4.0.0-rc.9
-- **Migration Guide**: [PicoXLSX v3.x to v4.0.0](https://github.com/rabanti-github/PicoXLSX/blob/master/MigrationGuide.md)
+- **Current Demo Version**: PicoXLSX v4.1.0
+- **Migration Guide**: [PicoXLSX v3.x to v4.x](https://github.com/rabanti-github/PicoXLSX/blob/master/MigrationGuide.md)
 
 ### NanoXLSX4j (Java)
 
