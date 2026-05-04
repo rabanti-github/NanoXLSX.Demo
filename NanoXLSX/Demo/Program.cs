@@ -17,7 +17,8 @@ namespace NanoXLSX.Demo
             { "Shortener", (UC.Shortener.Run, "Demonstrate shortened syntax for writing cells") },
             { "CellAndWorksheetSelection", (UC.CellAndWorksheetSelection.Run, "Usage of cell and worksheet selection") },
             { "Stream", (UC.Stream.Run, "Save workbooks to memory streams and file streams") },
-            { "Async", (() => UC.Async.Run().GetAwaiter().GetResult(), "Asynchronous file saving") },
+            { "SaveAsync", (() => UC.SaveAsync.Run().GetAwaiter().GetResult(), "Asynchronous file saving") },
+            { "ReadAsync", (() => UC.ReadAsync.Run().GetAwaiter().GetResult(), "Asynchronous workbook loading") },
             { "AddNextCell", (UC.AddnextCell.Run, "Using AddNextCell for sequential cell addition") },
             { "DataTypes", (UC.DataTypes.Run, "Working with various data types") },
             { "CellDirectionsAndValues", (UC.CellDirectionsAndValues.Run, "Cell directions and value handling") },
@@ -62,11 +63,13 @@ namespace NanoXLSX.Demo
             }
             else if (args[0].Equals("all", StringComparison.OrdinalIgnoreCase))
             {
-                RunAllUseCases();
+                var (total, failed) = RunAllUseCases();
+                PrintSummary(total, failed);
             }
             else
             {
-                RunSpecificUseCases(args[0]);
+                var (total, failed) = RunSpecificUseCases(args[0]);
+                PrintSummary(total, failed);
             }
 
             Console.WriteLine("\n=================================================");
@@ -77,43 +80,60 @@ namespace NanoXLSX.Demo
         /// <summary>
         /// Runs all use cases sequentially
         /// </summary>
-        private static void RunAllUseCases()
+        private static (int Total, List<(int Index, string Name)> Failed) RunAllUseCases()
         {
             Console.WriteLine("Running ALL use cases...\n");
+            var failed = new List<(int Index, string Name)>();
             int count = 1;
             foreach (var useCase in UseCases)
             {
-                RunUseCase(useCase.Key, count++, UseCases.Count);
+                if (!RunUseCase(useCase.Key, count, UseCases.Count))
+                {
+                    failed.Add((count, useCase.Key));
+                }
+                count++;
             }
+            return (UseCases.Count, failed);
         }
 
         /// <summary>
         /// Runs specific use cases by name or number
         /// </summary>
-        private static void RunSpecificUseCases(string selection)
+        private static (int Total, List<(int Index, string Name)> Failed) RunSpecificUseCases(string selection)
         {
             var selections = selection.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                                       .Select(s => s.Trim())
                                       .ToArray();
             var useCaseList = UseCases.Keys.ToList();
+            var failed = new List<(int Index, string Name)>();
+            int total = 0;
 
             foreach (var sel in selections)
             {
                 if (int.TryParse(sel, out int index) && index > 0 && index <= useCaseList.Count)
                 {
                     var useCaseName = useCaseList[index - 1];
-                    RunUseCase(useCaseName, index, UseCases.Count);
+                    total++;
+                    if (!RunUseCase(useCaseName, index, UseCases.Count))
+                    {
+                        failed.Add((index, useCaseName));
+                    }
                 }
                 else if (UseCases.ContainsKey(sel))
                 {
                     int idx = useCaseList.IndexOf(sel) + 1;
-                    RunUseCase(sel, idx, UseCases.Count);
+                    total++;
+                    if (!RunUseCase(sel, idx, UseCases.Count))
+                    {
+                        failed.Add((idx, sel));
+                    }
                 }
                 else
                 {
                     Console.WriteLine($"[WARNING] Use case '{sel}' not found. Skipping...\n");
                 }
             }
+            return (total, failed);
         }
 
         /// <summary>
@@ -135,11 +155,13 @@ namespace NanoXLSX.Demo
 
                 if (input.Equals("all", StringComparison.OrdinalIgnoreCase))
                 {
-                    RunAllUseCases();
+                    var (allTotal, allFailed) = RunAllUseCases();
+                    PrintSummary(allTotal, allFailed);
                     break;
                 }
 
-                RunSpecificUseCases(input);
+                var (selTotal, selFailed) = RunSpecificUseCases(input);
+                PrintSummary(selTotal, selFailed);
 
                 Console.Write("\nPress any key to continue or 'Q' to quit...");
                 if (Console.ReadKey().Key == ConsoleKey.Q)
@@ -168,13 +190,13 @@ namespace NanoXLSX.Demo
         }
 
         /// <summary>
-        /// Runs a single use case
+        /// Runs a single use case, returns true on success
         /// </summary>
-        private static void RunUseCase(string name, int current, int total)
+        private static bool RunUseCase(string name, int current, int total)
         {
             if (!UseCases.ContainsKey(name))
             {
-                return;
+                return false;
             }
 
             Console.WriteLine($"[{current}/{total}] Running: {name}");
@@ -185,12 +207,31 @@ namespace NanoXLSX.Demo
             {
                 UseCases[name].Run();
                 Console.WriteLine($"✓ {name} completed successfully\n");
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"✗ {name} failed with error:");
                 Console.WriteLine($"  {ex.Message}\n");
                 Console.WriteLine($"Stack trace:\n{ex.StackTrace}\n");
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Prints a summary of executed use cases
+        /// </summary>
+        private static void PrintSummary(int total, List<(int Index, string Name)> failed)
+        {
+            int successful = total - failed.Count;
+            if (failed.Count == 0)
+            {
+                Console.WriteLine($"{successful} of {total} use cases were executed successfully");
+            }
+            else
+            {
+                var failedList = string.Join(", ", failed.Select(f => $"{f.Index} ({f.Name})"));
+                Console.WriteLine($"{successful} of {total} use cases were executed successfully. The following use cases encountered errors: {failedList}");
             }
         }
 

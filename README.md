@@ -9,13 +9,15 @@ Comprehensive demo applications showcasing **NanoXLSX v3.x** and **PicoXLSX v4.x
 This repository contains executable use cases demonstrating the core features of NanoXLSX and PicoXLSX, .NET libraries for creating (and reading) Microsoft Excel (XLSX) files. Each use case is a standalone example that generates or reads Excel files, making it easy to learn and understand the libraries' capabilities.
 
 **Current Implementation:**
-- ✅ **NanoXLSX** (.NET 8.0) - Fully implemented with 27 use cases
+
+- ✅ **NanoXLSX** (.NET 8.0) - Fully implemented with 28 use cases
 - ✅ **PicoXLSX** (.NET 8.0) - Fully implemented with 25 use cases (writer-only)
 - ⏳ **NanoXLSX4j** (Java >11) - Planned
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - .NET 8.0 SDK or .NET 9.0 SDK (for .NET 8.0 target)
 - .NET Framework 4.5 or higher (for .NET Framework 4.5 target)
 - Any IDE supporting .NET (Visual Studio, VS Code, Rider)
@@ -23,26 +25,30 @@ This repository contains executable use cases demonstrating the core features of
 ### Running the NanoXLSX Demos
 
 **Interactive Mode** (shows menu of all use cases):
+
 ```bash
 cd NanoXLSX/Demo
 dotnet run
 ```
 
 To run a specific framework:
+
 ```bash
 dotnet run --framework net8.0    # Run with .NET 8.0
 dotnet run --framework net45      # Run with .NET Framework 4.5
 ```
 
 **Run All Use Cases**:
+
 ```bash
 dotnet run all
 ```
 
 **Run Specific Use Cases** (by name or number):
+
 ```bash
 dotnet run "BasicDemo,Read,StyleBasics"    # By name
-dotnet run "1,2,11"                        # By number
+dotnet run "1,2,12"                        # By number
 ```
 
 ### Running the PicoXLSX Demos
@@ -58,65 +64,74 @@ dotnet run "1,2,10"                              # By number
 ## 📚 Available Use Cases
 
 ### Basic Operations
+
 | # | Use Case | Description |
 |---|----------|-------------|
 | 1 | **BasicDemo** | Create a basic workbook with text, number, and datetime values |
 | 2 | **Read** | Load and read an existing Excel file with cell information |
-| 3 | **DataTypes** | Working with various data types (strings, numbers, dates, booleans) |
-| 8 | **CellDirectionsAndValues** | Cell navigation and value handling |
+| 9 | **DataTypes** | Working with various data types (strings, numbers, dates, booleans) |
+| 10 | **CellDirectionsAndValues** | Cell navigation and value handling |
 
 ### Advanced Cell Operations
+
 | # | Use Case | Description |
 |---|----------|-------------|
 | 4 | **CellAndWorksheetSelection** | Usage of cell and worksheet selection |
-| 7 | **AddNextCell** | Using AddNextCell for sequential cell addition |
-| 14 | **CellRanges** | Working with cell ranges and range operations |
-| 16 | **MergeCells** | Merging cells for headers and layout |
+| 8 | **AddNextCell** | Using AddNextCell for sequential cell addition |
+| 15 | **CellRanges** | Working with cell ranges and range operations |
+| 17 | **MergeCells** | Merging cells for headers and layout |
 
 ### Styling & Formatting
+
 | # | Use Case | Description |
 |---|----------|-------------|
-| 11 | **StyleBasics** | Basic usage of styles (fonts, fills, alignment) |
-| 12 | **StyleAppending** | Style appending and method chaining |
-| 13 | **ActiveAndSetStyle** | Applying styles to individual cells and ranges |
+| 12 | **StyleBasics** | Basic usage of styles (fonts, fills, alignment) |
+| 13 | **StyleAppending** | Style appending and method chaining |
+| 14 | **ActiveAndSetStyle** | Applying styles to individual cells and ranges |
 
 ### Inline Formatting (Rich Text)
 
 | # | Use Case | Description |
 |---|----------|-------------|
-| 24 | **InlineFormattingBasics** | Multiple text runs in a single cell with line breaks |
-| 25 | **InlineFormattingStyles** | Styled inline formatting (bold, italic, colors, sizes) |
-| 26 | **InlineFormattingPhonetic** | Phonetic runs for East Asian languages (Japanese) |
-| 27 | **InlineFormattingRead** | Reading cells with inline formatting from saved files |
+| 25 | **InlineFormattingBasics** | Multiple text runs in a single cell with line breaks |
+| 26 | **InlineFormattingStyles** | Styled inline formatting (bold, italic, colors, sizes) |
+| 27 | **InlineFormattingPhonetic** | Phonetic runs for East Asian languages (Japanese) |
+| 28 | **InlineFormattingRead** | Reading cells with inline formatting from saved files |
 
 ### Layout & Dimensions
+
 | # | Use Case | Description |
 |---|----------|-------------|
-| 10 | **ColumnWidthsRowHeights** | Setting column widths and row heights |
-| 18 | **HidingRowsAndColumns** | Hiding rows and columns |
-| 22 | **PaneSplitAndFreeze** | Worksheet splitting and freezing panes |
-| 23 | **HidingWorkbooksAndWorksheets** | Hiding workbooks and worksheets from visibility |
+| 11 | **ColumnWidthsRowHeights** | Setting column widths and row heights |
+| 19 | **HidingRowsAndColumns** | Hiding rows and columns |
+| 23 | **PaneSplitAndFreeze** | Worksheet splitting and freezing panes |
+| 24 | **HidingWorkbooksAndWorksheets** | Hiding workbooks and worksheets from visibility |
 
 ### Data Management
+
 | # | Use Case | Description |
 |---|----------|-------------|
-| 19 | **AutoFilter** | Auto-filtering for data tables |
-| 21 | **Formulas** | Excel formulas usage (SUM, AVERAGE, VLOOKUP, etc.) |
-| 15 | **Metadata** | Assigning workbook metadata (title, subject, author) |
-| 20 | **SanitizingWorksheetNames** | Worksheet name sanitization and validation |
+| 20 | **AutoFilter** | Auto-filtering for data tables |
+| 22 | **Formulas** | Excel formulas usage (SUM, AVERAGE, VLOOKUP, etc.) |
+| 16 | **Metadata** | Assigning workbook metadata (title, subject, author) |
+| 21 | **SanitizingWorksheetNames** | Worksheet name sanitization and validation |
 
 ### Security & Protection
+
 | # | Use Case | Description |
 |---|----------|-------------|
-| 17 | **ProtectionAndPasswords** | Sheet protection and password protection |
+| 18 | **ProtectionAndPasswords** | Sheet protection and password protection |
 
 ### I/O Operations
-| # | Use Case | Description |
-|---|----------|-------------|
-| 5 | **Stream** | Save workbooks to memory streams and file streams |
-| 6 | **Async** | Asynchronous file saving for better performance |
+
+| # | Use Case      | Description                                        |
+|---|---------------|----------------------------------------------------|
+| 5 | **Stream**    | Save workbooks to memory streams and file streams  |
+| 6 | **SaveAsync** | Asynchronous file saving for better performance    |
+| 7 | **ReadAsync** | Asynchronous workbook loading from file and stream |
 
 ### Syntax Shortcuts
+
 | # | Use Case | Description |
 |---|----------|-------------|
 | 3 | **Shortener** | Demonstrate shortened syntax for writing cells |
@@ -128,7 +143,7 @@ Demo/
 ├── NanoXLSX/
 │   ├── Demo/                   # Multi-targeting project (net8.0 + net45)
 │   │   ├── Program.cs          # Interactive demo runner
-│   │   ├── UseCases/           # 27 individual use case files
+│   │   ├── UseCases/           # 28 individual use case files
 │   │   └── NanoXLSX.Demo.csproj  # Project file
 │   └── Demo.sln                # Visual Studio solution
 ├── PicoXLSX/
@@ -144,12 +159,14 @@ Demo/
 ## 📖 Documentation & Resources
 
 ### NanoXLSX
+
 - **Main Repository**: [github.com/rabanti-github/NanoXLSX](https://github.com/rabanti-github/NanoXLSX)
 - **API Documentation**: [rabanti-github.github.io/NanoXLSX](https://rabanti-github.github.io/NanoXLSX/)
 - **NuGet Package**: [nuget.org/packages/NanoXLSX](https://www.nuget.org/packages/NanoXLSX)
 - **Current Demo Version**: NanoXLSX v3.0.0-rc.9
 
 ### PicoXLSX
+
 - **Main Repository**: [github.com/rabanti-github/PicoXLSX](https://github.com/rabanti-github/PicoXLSX)
 - **API Documentation**: [rabanti-github.github.io/PicoXLSX](https://rabanti-github.github.io/PicoXLSX/)
 - **NuGet Package**: [nuget.org/packages/PicoXLSX](https://www.nuget.org/packages/PicoXLSX)
@@ -157,6 +174,7 @@ Demo/
 - **Migration Guide**: [PicoXLSX v3.x to v4.0.0](https://github.com/rabanti-github/PicoXLSX/blob/master/MigrationGuide.md)
 
 ### NanoXLSX4j (Java)
+
 - **Main Repository**: [github.com/rabanti-github/NanoXLSX4j](https://github.com/rabanti-github/NanoXLSX4j)
 - **Javadoc**: [rabanti-github.github.io/NanoXLSX4j](https://rabanti-github.github.io/NanoXLSX4j/)
 
@@ -234,6 +252,7 @@ This demo project follows the same license as the main NanoXLSX library - MIT Li
 ## 🤝 Contributing
 
 This is a demo repository. For contributions to the main library, please visit:
+
 - [NanoXLSX Issues](https://github.com/rabanti-github/NanoXLSX/issues)
 - [PicoXLSX Issues](https://github.com/rabanti-github/PicoXLSX/issues)
 - [NanoXLSX4j Issues](https://github.com/rabanti-github/NanoXLSX4j/issues)

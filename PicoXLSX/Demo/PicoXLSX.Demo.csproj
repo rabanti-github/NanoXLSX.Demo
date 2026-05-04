@@ -6,7 +6,7 @@
     <LangVersion>9.0</LangVersion>
     <AssemblyName>PicoXLSX.Demo</AssemblyName>
     <RootNamespace>PicoXLSX.Demo</RootNamespace>
-    <Version>4.0.0</Version>
+    <Version>4.1.0</Version>
     <Authors>Raphael Stoeckli</Authors>
     <Company>Raphael Stoeckli</Company>
     <Product>PicoXLSX</Product>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PicoXLSX" Version="[4.0.0, 5.0.0)" />
+    <PackageReference Include="PicoXLSX" Version="[4.1.0, 5.0.0)" />
   </ItemGroup>
 
 </Project>
